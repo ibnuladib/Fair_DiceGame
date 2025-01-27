@@ -108,5 +108,7 @@ class Dice:
     def computeDice(self, first: int, second: int) -> None:
         if self.userScore < self.compScore:
             print(f"You lose ({first}>{second})")
-        else:
+        elif self.userScore > self.compScore:
             print(f"You win! ({second}>{first})")
+        else:
+            print(f"Draw! ({first} == {second})")
