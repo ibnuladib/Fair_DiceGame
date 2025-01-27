@@ -17,12 +17,14 @@ class DiceProbability:
         for i, die_a in enumerate(self.dice):
             for j, die_b in enumerate(self.dice):
                 if i == j:
-                    self.probabilities[i][j] = f"- ({1/len(die_a):.4f})"  # Diagonal value
+                    self.probabilities[i][j] = f"- ({1 / len(die_a):.4f})"
                 else:
-                    self.probabilities[i][j] = f"{count_prob(die_a, die_b):.4f}"  # Probability value
+                    if die_a == die_b:
+                        self.probabilities[i][j] = f"- ({1 / len(die_a):.4f})"
+                    else:
+                        self.probabilities[i][j] = f"{count_prob(die_a, die_b):.4f}"
 
     def make_table(self):
-        print("Probability of the win for the user:")
         if not self.probabilities:
             raise ValueError("Probabilities not calculated. Call `calculate_probabilities` first.")
         headers = ["User dice v"] + [str(die) for die in self.dice]

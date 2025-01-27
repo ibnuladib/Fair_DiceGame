@@ -38,6 +38,7 @@ class Dice:
                 elif self.input == "X":
                     return
                 elif self.input == "?":
+                    print("Probability of the win for the user:")
                     print(self.prob)
                     continue
                 else:
@@ -47,8 +48,12 @@ class Dice:
 
     def compfirst(self) -> None:
         self.compDice = self.die[0]
-        self.input = input(
-            f"I make the first move and choose the {self.die[0]} dice\nChoose your dice:\n0 -{self.die[1]}\n1 - {self.die[2]}\nX - exit\n? - help\nYour selection: ")
+        print(f"I make the first move and choose the {self.die[0]} dice.")
+        print("Choose your dice:")
+        for i, dice in enumerate(self.die[1:],start=1):
+            print(f"{i - 1} - {dice}")
+        print("X - exit\n? - help")
+        self.input = input("Your selection: ")
         if self.input.isdigit():
             self.userDice = self.die[int(self.input) + 1]
             print(f"You choose the {self.userDice} dice\nIt's time for my throw.")
@@ -62,9 +67,12 @@ class Dice:
             return
 
     def userfirst(self) -> None:
-        self.input = input(
-            f"Choose your dice:\n0 - {self.die[0]}\n1 - {self.die[1]}\n2 - {self.die[2]}"
-            f"\nX - exit\n? - help\nYour selection: ")
+        print("Choose your dice:")
+        for i, dice in enumerate(self.die):
+            print(f"{i} - {dice}")
+        print("X - exit\n? - help")
+
+        self.input = input("Your selection: ")
         if self.input.isdigit():
             self.userDice = self.die[int(self.input)]
             del self.die[int(self.input)]
